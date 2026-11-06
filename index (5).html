@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101827">
+  <title>GameZone — O‘yinlar olami</title>
+  <style>
+    :root{--bg:#0b1020;--panel:#121a2c;--panel2:#182238;--text:#f4f7ff;--muted:#a7b1c8;--accent:#7c5cff;--accent2:#19c6b4;--border:rgba(255,255,255,.09);--shadow:0 18px 50px rgba(0,0,0,.24)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at top right,rgba(124,92,255,.15),transparent 36%),var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.5}
+    button,input,select,textarea{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}.wrap{width:min(1180px,calc(100% - 36px));margin:auto}
+    header{position:sticky;top:0;z-index:10;background:rgba(11,16,32,.86);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+    .nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{display:flex;align-items:center;gap:11px;font-weight:850;font-size:1.25rem;letter-spacing:-.04em}.brand-mark{width:40px;height:40px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:0 8px 24px #7c5cff45;font-size:1.2rem}.brand span:last-child{color:#9c8aff}.navlinks{display:flex;gap:24px;color:var(--muted);font-size:.94rem}.navlinks a:hover{color:white}.nav-actions{display:flex;align-items:center;gap:10px}
+    .btn{border:1px solid var(--border);background:var(--panel2);color:var(--text);border-radius:12px;padding:10px 14px;font-weight:700;transition:.2s}.btn:hover{transform:translateY(-1px);border-color:#8c7aff}.btn.primary{border:0;background:linear-gradient(135deg,var(--accent),#5b7cff)}.hero{padding:66px 0 36px;display:grid;grid-template-columns:1.15fr .85fr;align-items:center;gap:36px}.eyebrow{display:inline-flex;align-items:center;gap:8px;border:1px solid #7c5cff55;background:#7c5cff18;color:#c8beff;padding:7px 12px;border-radius:999px;font-size:.82rem;font-weight:800}.hero h1{font-size:clamp(2.5rem,6vw,4.7rem);line-height:1.02;letter-spacing:-.065em;margin:20px 0}.gradient{background:linear-gradient(100deg,#a99aff,#58e3d3);-webkit-background-clip:text;background-clip:text;color:transparent}.hero p{max-width:590px;color:var(--muted);font-size:1.08rem}.hero-buttons{display:flex;gap:12px;flex-wrap:wrap;margin-top:25px}.hero-art{position:relative;min-height:300px;border-radius:28px;overflow:hidden;border:1px solid var(--border);background:linear-gradient(135deg,#211a4a,#142d3a);box-shadow:var(--shadow);display:flex;align-items:end;padding:24px}.hero-art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.68}.hero-art:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(6,10,22,.94),transparent 80%)}.hero-caption{position:relative;z-index:1}.hero-caption strong{font-size:1.5rem;display:block}.hero-caption small{color:#d4dbef}
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:10px 0 52px}.stat{padding:18px 20px;background:var(--panel);border:1px solid var(--border);border-radius:18px}.stat b{display:block;font-size:1.55rem}.stat span{color:var(--muted);font-size:.9rem}
+    section{scroll-margin-top:95px}.section-head{display:flex;justify-content:space-between;align-items:end;gap:18px;margin:35px 0 22px}.section-head h2{font-size:clamp(1.6rem,4vw,2.25rem);letter-spacing:-.04em;margin:0}.section-head p{color:var(--muted);margin:6px 0 0}.tools{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}.search{position:relative;flex:1;min-width:220px}.search input{width:100%;height:46px;padding:0 15px 0 42px;background:var(--panel);border:1px solid var(--border);border-radius:13px;color:var(--text);outline:none}.search input:focus,select:focus{border-color:var(--accent)}.search:before{content:"⌕";position:absolute;left:15px;top:6px;font-size:1.45rem;color:var(--muted)}select{min-height:46px;padding:0 14px;border:1px solid var(--border);border-radius:13px;background:var(--panel);color:var(--text);outline:none}.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}.filter{border:1px solid var(--border);border-radius:999px;background:transparent;color:var(--muted);padding:8px 13px;font-size:.88rem}.filter.active,.filter:hover{background:#7c5cff25;color:#e3ddff;border-color:#7c5cff88}
+    .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.game-card{background:var(--panel);border:1px solid var(--border);border-radius:18px;overflow:hidden;transition:transform .22s,border-color .22s;min-width:0}.game-card:hover{transform:translateY(-5px);border-color:#8b7bff88}.cover{height:178px;background:linear-gradient(135deg,#25254a,#16414a);position:relative;overflow:hidden}.cover img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s}.game-card:hover .cover img{transform:scale(1.045)}.cover-fallback{position:absolute;inset:0;display:none;align-items:center;justify-content:center;text-align:center;padding:20px;background:linear-gradient(135deg,#27224e,#13534f);font-size:1.35rem;font-weight:850;letter-spacing:-.03em}.cover-fallback small{display:block;font-size:.72rem;color:#c6cde0;font-weight:500;margin-top:5px}.cover-badge{position:absolute;top:12px;left:12px;background:rgba(8,12,24,.82);border:1px solid #ffffff20;padding:5px 9px;border-radius:999px;font-size:.72rem;font-weight:800;backdrop-filter:blur(8px)}.fav{position:absolute;right:12px;top:12px;width:36px;height:36px;border-radius:50%;border:1px solid #ffffff40;background:#080c18c9;color:white;font-size:1.15rem}.fav.active{color:#ff7da8}.game-body{padding:17px}.game-top{display:flex;align-items:start;justify-content:space-between;gap:10px}.game-top h3{margin:0;font-size:1.08rem;letter-spacing:-.02em}.rating{white-space:nowrap;color:#ffd36a;font-size:.84rem;font-weight:800}.meta{display:flex;gap:7px;flex-wrap:wrap;margin:11px 0}.tag{background:var(--panel2);border:1px solid var(--border);color:#c2cce0;padding:4px 8px;border-radius:7px;font-size:.74rem}.game-body p{margin:0;color:var(--muted);font-size:.9rem;min-height:44px}.card-bottom{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:16px}.price{font-weight:800;font-size:.88rem}.details{padding:8px 12px;font-size:.84rem}.empty{grid-column:1/-1;text-align:center;padding:45px 15px;color:var(--muted);background:var(--panel);border:1px dashed var(--border);border-radius:18px}
+    .faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.faq-item{background:var(--panel);border:1px solid var(--border);border-radius:14px;overflow:hidden}.faq-question{width:100%;display:flex;align-items:center;justify-content:space-between;gap:14px;text-align:left;padding:17px;background:none;border:0;color:var(--text);font-weight:750}.faq-answer{display:none;color:var(--muted);padding:0 17px 17px}.faq-item.open .faq-answer{display:block}.faq-item.open .faq-question span:last-child{transform:rotate(45deg)}.ask{margin-top:24px;padding:24px;background:var(--panel);border:1px solid var(--border);border-radius:18px}.ask h3{margin:0 0 5px}.ask p{margin:0 0 16px;color:var(--muted)}.ask-form{display:grid;grid-template-columns:1fr 1fr;gap:12px}.ask-form input,.ask-form textarea{width:100%;padding:12px 14px;background:var(--bg);border:1px solid var(--border);border-radius:11px;color:var(--text);outline:none}.ask-form textarea{grid-column:1/-1;min-height:100px;resize:vertical}.ask-form button{justify-self:start}.form-message{color:#7ce3c7;margin-top:12px;min-height:22px}
+    footer{margin-top:70px;border-top:1px solid var(--border);padding:28px 0;color:var(--muted);font-size:.88rem}.footer-row{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}.modal{position:fixed;inset:0;z-index:30;background:#030611d9;backdrop-filter:blur(9px);display:none;align-items:center;justify-content:center;padding:20px}.modal.show{display:flex}.modal-card{width:min(650px,100%);max-height:90vh;overflow:auto;background:var(--panel);border:1px solid var(--border);border-radius:22px;box-shadow:var(--shadow)}.modal-cover{width:100%;height:230px;object-fit:cover;display:block;background:var(--panel2)}.modal-content{padding:24px}.modal-content h2{margin:0 0 8px}.modal-content p{color:var(--muted)}.modal-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}.modal-close{float:right}.toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;z-index:50;background:#1c2940;border:1px solid var(--border);padding:12px 18px;border-radius:12px;box-shadow:var(--shadow);transition:.25s}.toast.show{opacity:1;transform:translate(-50%,0)}
+    @media(max-width:900px){.hero{grid-template-columns:1fr;padding-top:44px}.hero-art{min-height:250px}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.navlinks{display:none}}
+    @media(max-width:580px){.wrap{width:min(100% - 24px,1180px)}.nav{height:66px}.nav-actions .btn:not(.primary){display:none}.hero{padding-top:36px;gap:24px}.hero h1{font-size:2.65rem}.hero-art{min-height:210px}.stats{gap:8px;margin-bottom:38px}.stat{padding:13px 10px}.stat b{font-size:1.25rem}.stat span{font-size:.75rem}.section-head{align-items:start;flex-direction:column}.grid{grid-template-columns:1fr}.cover{height:205px}.faq-grid{grid-template-columns:1fr}.ask{padding:18px}.ask-form{grid-template-columns:1fr}.ask-form textarea{grid-column:auto}.modal-cover{height:190px}}
+  </style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#bosh"><span class="brand-mark">🎮</span><span>Game<span>Zone</span></span></a>
+    <nav class="navlinks"><a href="#bosh">Bosh sahifa</a><a href="#oyinlar">O‘yinlar</a><a href="#savollar">Savol-javob</a></nav>
+    <div class="nav-actions"><button class="btn" id="favoritesToggle" type="button">♡ Sevimlilar</button><a class="btn primary" href="#oyinlar">O‘yinlarni ko‘rish ↗</a></div>
+  </div>
+</header>
+<main class="wrap">
+  <section class="hero" id="bosh">
+    <div>
+      <span class="eyebrow">✦ O‘YINLAR OLAMIGA XUSH KELIBSIZ</span>
+      <h1>Sevimli o‘yiningizni <span class="gradient">shu yerdan</span> toping.</h1>
+      <p>Eng mashhur kompyuter o‘yinlari, ularning janri, bahosi va qisqacha tavsifi — barchasi bitta qulay sahifada.</p>
+      <div class="hero-buttons"><a href="#oyinlar" class="btn primary">O‘yinlarni ko‘rish →</a><a href="#savollar" class="btn">Savol berish</a></div>
+    </div>
+    <div class="hero-art">
+      <img src="https://cdn.akamai.steamstatic.com/steam/apps/1245620/header.jpg" alt="Elden Ring o‘yinining rasmiy tasviri" onerror="this.style.display='none'">
+      <div class="hero-caption"><strong>O‘yinlar. Kashfiyotlar. Sarguzashtlar.</strong><small>Har bir o‘yin — yangi bir olam.</small></div>
+    </div>
+  </section>
+  <div class="stats">
+    <div class="stat"><b id="totalGames">18+</b><span>O‘yinlar katalogi</span></div>
+    <div class="stat"><b>Har xil</b><span>Janr va sarguzashtlar</span></div>
+    <div class="stat"><b>24/7</b><span>Istalgan vaqtda ko‘rish</span></div>
+  </div>
+  <section id="oyinlar">
+    <div class="section-head"><div><h2>O‘yinlar katalogi</h2><p>Qidirib toping, tanlang va batafsil ma’lumot bilan tanishing.</p></div><span id="resultCount" class="tag">18 ta o‘yin</span></div>
+    <div class="tools">
+      <label class="search"><input id="searchInput" type="search" placeholder="O‘yin nomini qidiring..." aria-label="O‘yin qidirish"></label>
+      <select id="sortSelect" aria-label="Saralash"><option value="popular">Mashhurligi bo‘yicha</option><option value="rating">Reytingi yuqori</option><option value="az">Nom bo‘yicha (A–Z)</option></select>
+    </div>
+    <div class="filters" id="filters">
+      <button class="filter active" data-genre="Barchasi">Barchasi</button>
+      <button class="filter" data-genre="Shooter">Otishma</button>
+      <button class="filter" data-genre="Sarguzasht">Sarguzasht</button>
+      <button class="filter" data-genre="RPG">RPG</button>
+      <button class="filter" data-genre="Strategiya">Strategiya</button>
+      <button class="filter" data-genre="Simulyator">Simulyator</button>
+      <button class="filter" data-genre="Indi">Indi</button>
+    </div>
+    <div class="grid" id="gameGrid" aria-live="polite"></div>
+  </section>
+  <section id="savollar">
+    <div class="section-head"><div><h2>Savol-javob</h2><p>Sayt va o‘yinlar haqida ko‘p so‘raladigan savollar.</p></div></div>
+    <div class="faq-grid">
+      <article class="faq-item"><button class="faq-question" aria-expanded="false"><span>Bu saytdan o‘yinlarni yuklab olsa bo‘ladimi?</span><span>＋</span></button><div class="faq-answer">Bu katalog o‘yinlar haqida ma’lumot beradi. O‘yinni olish yoki yuklab olish uchun uning rasmiy do‘kon sahifasiga o‘ting.</div></article>
+      <article class="faq-item"><button class="faq-question" aria-expanded="false"><span>O‘yinlarning rasmlari qayerdan olinadi?</span><span>＋</span></button><div class="faq-answer">Katalogdagi ko‘plab rasmlar Steam do‘konining o‘yinlarga tegishli muqova tasvirlaridan yuklanadi. Rasmlar ko‘rinishi uchun internet kerak.</div></article>
+      <article class="faq-item"><button class="faq-question" aria-expanded="false"><span>Sevimli o‘yinlarimni saqlay olamanmi?</span><span>＋</span></button><div class="faq-answer">Ha. O‘yin kartasidagi yurak tugmasini bosing. Sevimlilar ro‘yxati shu brauzer qurilmasida saqlanadi.</div></article>
+      <article class="faq-item"><button class="faq-question" aria-expanded="false"><span>Qidiruv qanday ishlaydi?</span><span>＋</span></button><div class="faq-answer">Qidiruv maydoniga o‘yin nomini yozing, so‘ng kerakli janr filtrini tanlang. Natijalar avtomatik yangilanadi.</div></article>
+    </div>
+    <div class="ask">
+      <h3>Javob topa olmadingizmi?</h3><p>Bizga savolingizni yozing. Hozircha yuborilgan savol ushbu sahifada ko‘rsatiladi; serverga jo‘natilmaydi.</p>
+      <form class="ask-form" id="questionForm">
+        <input id="questionName" name="name" placeholder="Ismingiz" required maxlength="60">
+        <input id="questionEmail" name="email" type="email" placeholder="Elektron pochtangiz (ixtiyoriy)">
+        <textarea id="questionText" name="question" placeholder="Savolingizni yozing..." required maxlength="1000"></textarea>
+        <button class="btn primary" type="submit">Savolni yuborish ↗</button>
+      </form>
+      <div class="form-message" id="formMessage" role="status"></div>
+      <div id="submittedQuestions"></div>
+    </div>
+  </section>
+</main>
+<footer><div class="wrap footer-row"><span>© <span id="year"></span> GameZone. Barcha huquqlar egalariga tegishli.</span><span>O‘yinlar haqida ma’lumot va kashfiyotlar uchun.</span></div></footer>
+<div class="modal" id="gameModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-card"><img id="modalCover" class="modal-cover" alt=""><div class="modal-content"><button class="btn modal-close" id="modalClose" type="button">Yopish ✕</button><h2 id="modalTitle"></h2><div class="meta" id="modalMeta"></div><p id="modalDescription"></p><div class="modal-actions"><a id="officialLink" class="btn primary" href="#" target="_blank" rel="noopener noreferrer">Rasmiy sahifani ochish ↗</a><button id="modalFav" class="btn" type="button">♡ Sevimlilarga qo‘shish</button></div></div></div>
+</div>
+<div class="toast" id="toast" role="status"></div>
+<script>
+const games = [
+ {id:730,name:"Counter-Strike 2",genre:"Shooter",type:"Jamoaviy otishma",rating:8.8,price:"Bepul",year:2023,app:730,desc:"Aniqlik, taktika va jamoaviy hamkorlik muhim bo‘lgan mashhur raqobatbardosh otishma o‘yini."},
+ {id:570,name:"Dota 2",genre:"Strategiya",type:"MOBA / Strategiya",rating:8.7,price:"Bepul",year:2013,app:570,desc:"Qahramonlar, strategiya va jamoaviy qarorlar asosida kechadigan chuqur raqobatbardosh o‘yin."},
+ {id:578080,name:"PUBG: BATTLEGROUNDS",genre:"Shooter",type:"Battle Royale",rating:8.1,price:"Bepul",year:2017,app:578080,desc:"O‘yinchilar katta xaritada omon qolish uchun kurashadigan, taktikaga asoslangan jangovar o‘yin."},
+ {id:271590,name:"Grand Theft Auto V",genre:"Sarguzasht",type:"Ochiq dunyo",rating:9.0,price:"Pullik",year:2015,app:271590,desc:"Los Santos shahrida turli qahramonlar hikoyasi, topshiriqlar va ochiq dunyo imkoniyatlari."},
+ {id:252490,name:"Rust",genre:"Sarguzasht",type:"Omon qolish",rating:8.0,price:"Pullik",year:2018,app:252490,desc:"Resurs to‘plash, boshpana qurish va boshqa o‘yinchilar bilan omon qolishga qaratilgan o‘yin."},
+ {id:1172470,name:"Apex Legends",genre:"Shooter",type:"Battle Royale",rating:8.2,price:"Bepul",year:2020,app:1172470,desc:"O‘ziga xos qobiliyatlarga ega qahramonlar bilan tezkor jamoaviy janglar."},
+ {id:292030,name:"The Witcher 3: Wild Hunt",genre:"RPG",type:"Fantastik RPG",rating:9.5,price:"Pullik",year:2015,app:292030,desc:"Geralt ismli maxluq ovchisining katta fantastik olamdagi hikoyasi va tanlovlarga boy sarguzashti."},
+ {id:1091500,name:"Cyberpunk 2077",genre:"RPG",type:"Ilmiy-fantastika RPG",rating:8.6,price:"Pullik",year:2020,app:1091500,desc:"Kelajakdagi Night City shahrida o‘tadigan, tanlovlar va qahramon rivojiga boy ochiq dunyo RPG."},
+ {id:1245620,name:"ELDEN RING",genre:"RPG",type:"Fantastik sarguzasht",rating:9.4,price:"Pullik",year:2022,app:1245620,desc:"Keng sirli olam, murakkab janglar va kashf etishga boy fantastik sarguzasht."},
+ {id:105600,name:"Terraria",genre:"Indi",type:"Sandbox / Sarguzasht",rating:9.0,price:"Pullik",year:2011,app:105600,desc:"2D olamda qazish, qurish, buyum yaratish va turli mavjudotlar bilan kurashish o‘yini."},
+ {id:413150,name:"Stardew Valley",genre:"Indi",type:"Ferma simulyatori",rating:9.3,price:"Pullik",year:2016,app:413150,desc:"Ferma rivojlantirish, ekin ekish, baliq ovlash va qishloq aholisi bilan tanishish."},
+ {id:550,name:"Left 4 Dead 2",genre:"Shooter",type:"Kooperativ otishma",rating:8.9,price:"Pullik",year:2009,app:550,desc:"Do‘stlar bilan birga topshiriqlarni bajarishga asoslangan tezkor kooperativ zombi o‘yini."},
+ {id:227300,name:"Euro Truck Simulator 2",genre:"Simulyator",type:"Haydash simulyatori",rating:8.9,price:"Pullik",year:2012,app:227300,desc:"Yevropa yo‘llarida yuk tashish, yuk mashinasini boshqarish va transport biznesini rivojlantirish."},
+ {id:1551360,name:"Forza Horizon 5",genre:"Simulyator",type:"Poyga",rating:8.8,price:"Pullik",year:2021,app:1551360,desc:"Go‘zal Meksika manzaralarida turli avtomobillar bilan erkin poyga va musobaqalar."},
+ {id:2050650,name:"Resident Evil 4",genre:"Sarguzasht",type:"Omon qolish / Dahshat",rating:9.0,price:"Pullik",year:2023,app:2050650,desc:"Leon Kennedy ishtirokidagi tarang voqealar, jumboqlar va omon qolish sarguzashti."},
+ {id:990080,name:"Hogwarts Legacy",genre:"RPG",type:"Sehrli ochiq dunyo",rating:8.4,price:"Pullik",year:2023,app:990080,desc:"Sehr-jodu olamida o‘qish, kashf qilish va o‘z qahramoningizning yo‘lini tanlash."},
+ {id:1174180,name:"Red Dead Redemption 2",genre:"Sarguzasht",type:"Ochiq dunyo",rating:9.6,price:"Pullik",year:2019,app:1174180,desc:"Yovvoyi G‘arb muhitidagi keng olam, chuqur hikoya va ko‘plab kashfiyotlar."},
+ {id:1086940,name:"Baldur’s Gate 3",genre:"RPG",type:"Navbatma-navbat RPG",rating:9.5,price:"Pullik",year:2023,app:1086940,desc:"Tanlovlar, taktika, hamrohlar va hikoyaga boy fantastik rol o‘ynash o‘yini."}
+];
+const steamImage = app => `https://cdn.akamai.steamstatic.com/steam/apps/${app}/header.jpg`;
+let selectedGenre = "Barchasi", favoritesOnly = false, currentModalGame = null;
+let favorites = new Set();
+try { favorites = new Set(JSON.parse(localStorage.getItem("gamezone-favorites") || "[]")); } catch(e) {}
+const grid = document.getElementById("gameGrid");
+const searchInput = document.getElementById("searchInput");
+const sortSelect = document.getElementById("sortSelect");
+const resultCount = document.getElementById("resultCount");
+function safeText(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+function renderGames(){
+ let list = games.filter(g => (selectedGenre==="Barchasi" || g.genre===selectedGenre) && (!favoritesOnly || favorites.has(g.id)) && (g.name+" "+g.genre+" "+g.type).toLowerCase().includes(searchInput.value.trim().toLowerCase()));
+ if(sortSelect.value==="rating") list.sort((a,b)=>b.rating-a.rating);
+ else if(sortSelect.value==="az") list.sort((a,b)=>a.name.localeCompare(b.name));
+ else list.sort((a,b)=>a.id-b.id);
+ resultCount.textContent = `${list.length} ta o‘yin`;
+ document.getElementById("totalGames").textContent = `${games.length}+`;
+ if(!list.length){grid.innerHTML='<div class="empty">😕 Bu shartlarga mos o‘yin topilmadi.<br>Qidiruvni yoki filtrni o‘zgartirib ko‘ring.</div>';return;}
+ grid.innerHTML = list.map(g=>`<article class="game-card">
+   <div class="cover">
+    <img src="${steamImage(g.app)}" alt="${safeText(g.name)} o‘yinining muqova rasmi" loading="lazy" data-image="${g.id}">
+    <div class="cover-fallback" id="fallback-${g.id}">${safeText(g.name)}<small>Rasm yuklanmadi</small></div>
+    <span class="cover-badge">${safeText(g.genre)}</span>
+    <button class="fav ${favorites.has(g.id)?"active":""}" data-fav="${g.id}" type="button" aria-label="${favorites.has(g.id)?"Sevimlilardan olib tashlash":"Sevimlilarga qo‘shish"}">${favorites.has(g.id)?"♥":"♡"}</button>
+   </div>
+   <div class="game-body"><div class="game-top"><h3>${safeText(g.name)}</h3><span class="rating">★ ${g.rating.toFixed(1)}</span></div>
+   <div class="meta"><span class="tag">${safeText(g.type)}</span><span class="tag">${g.year}</span></div>
+   <p>${safeText(g.desc)}</p><div class="card-bottom"><span class="price">${g.price}</span><button class="btn details" data-details="${g.id}" type="button">Batafsil ↗</button></div></div>
+  </article>`).join("");
+ grid.querySelectorAll("img[data-image]").forEach(img=>img.addEventListener("error",()=>{img.style.display="none";const fb=document.getElementById("fallback-"+img.dataset.image);if(fb)fb.style.display="flex";},{once:true}));
+}
+function saveFavorites(){try{localStorage.setItem("gamezone-favorites",JSON.stringify([...favorites]));}catch(e){}}
+function showToast(msg){const t=document.getElementById("toast");t.textContent=msg;t.classList.add("show");clearTimeout(showToast.timer);showToast.timer=setTimeout(()=>t.classList.remove("show"),2300);}
+grid.addEventListener("click",e=>{
+ const fav=e.target.closest("[data-fav]");if(fav){const id=Number(fav.dataset.fav);if(favorites.has(id)){favorites.delete(id);showToast("Sevimlilardan olib tashlandi");}else{favorites.add(id);showToast("Sevimlilarga qo‘shildi");}saveFavorites();renderGames();return;}
+ const detail=e.target.closest("[data-details]");if(detail)openModal(Number(detail.dataset.details));
+});
+document.getElementById("filters").addEventListener("click",e=>{const b=e.target.closest("[data-genre]");if(!b)return;selectedGenre=b.dataset.genre;document.querySelectorAll(".filter").forEach(x=>x.classList.toggle("active",x===b));renderGames();});
+searchInput.addEventListener("input",renderGames);sortSelect.addEventListener("change",renderGames);
+document.getElementById("favoritesToggle").addEventListener("click",e=>{favoritesOnly=!favoritesOnly;e.currentTarget.textContent=favoritesOnly?"♥ Barcha o‘yinlar":"♡ Sevimlilar";e.currentTarget.classList.toggle("primary",favoritesOnly);document.getElementById("oyinlar").scrollIntoView({behavior:"smooth"});renderGames();});
+function openModal(id){const g=games.find(x=>x.id===id);if(!g)return;currentModalGame=g;const modal=document.getElementById("gameModal"),img=document.getElementById("modalCover");img.src=steamImage(g.app);img.alt=g.name+" o‘yinining muqova rasmi";img.onerror=()=>{img.style.visibility="hidden";};img.onload=()=>{img.style.visibility="visible";};document.getElementById("modalTitle").textContent=g.name;document.getElementById("modalDescription").textContent=g.desc;document.getElementById("modalMeta").innerHTML=`<span class="tag">${safeText(g.genre)}</span><span class="tag">${safeText(g.type)}</span><span class="tag">${g.year}</span><span class="tag">★ ${g.rating.toFixed(1)}</span><span class="tag">${g.price}</span>`;document.getElementById("officialLink").href=`https://store.steampowered.com/app/${g.app}/`;document.getElementById("modalFav").textContent=favorites.has(g.id)?"♥ Sevimlilardan olib tashlash":"♡ Sevimlilarga qo‘shish";modal.classList.add("show");document.body.style.overflow="hidden";}
+function closeModal(){document.getElementById("gameModal").classList.remove("show");document.body.style.overflow="";}
+document.getElementById("modalClose").addEventListener("click",closeModal);
+document.getElementById("gameModal").addEventListener("click",e=>{if(e.target.id==="gameModal")closeModal();});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal();});
+document.getElementById("modalFav").addEventListener("click",()=>{if(!currentModalGame)return;const id=currentModalGame.id;if(favorites.has(id))favorites.delete(id);else favorites.add(id);saveFavorites();document.getElementById("modalFav").textContent=favorites.has(id)?"♥ Sevimlilardan olib tashlash":"♡ Sevimlilarga qo‘shish";renderGames();showToast(favorites.has(id)?"Sevimlilarga qo‘shildi":"Sevimlilardan olib tashlandi");});
+document.querySelectorAll(".faq-question").forEach(btn=>btn.addEventListener("click",()=>{const item=btn.closest(".faq-item");item.classList.toggle("open");btn.setAttribute("aria-expanded",item.classList.contains("open")?"true":"false");}));
+document.getElementById("questionForm").addEventListener("submit",e=>{e.preventDefault();const name=document.getElementById("questionName").value.trim(),email=document.getElementById("questionEmail").value.trim(),question=document.getElementById("questionText").value.trim();if(!name||!question)return;const card=document.createElement("div");card.style.cssText="margin-top:14px;padding:14px;border:1px solid var(--border);border-radius:12px;background:var(--bg)";const title=document.createElement("strong");title.textContent=name+" savoli";const body=document.createElement("p");body.style.margin="8px 0 0";body.textContent=question;card.append(title,body);if(email){const small=document.createElement("div");small.style.cssText="color:var(--muted);font-size:.8rem;margin-top:6px";small.textContent="Aloqa: "+email;card.append(small);}document.getElementById("submittedQuestions").prepend(card);document.getElementById("formMessage").textContent="Savolingiz ushbu sahifaga qo‘shildi.";e.target.reset();});
+document.getElementById("year").textContent=new Date().getFullYear();
+renderGames();
+</script>
+</body>
+</html>
